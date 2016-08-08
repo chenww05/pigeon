@@ -1,0 +1,12 @@
+<h1>{{ wedding.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'planner:vote' wedding.id %}" method="post">
+{% csrf_token %}
+{% for event in wedding.event_set.all %}
+    <input type="radio" name="event" id="event{{ forloop.counter }}" value="{{ event.id }}" />
+    <label for="event{{ forloop.counter }}">{{ event.name }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>

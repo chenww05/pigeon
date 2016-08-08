@@ -1,0 +1,8 @@
+<h1>{{ wedding.name }}</h1>
+
+<ul>
+{% for event in wedding.event_set.all %}
+    <li>{{ event.name }} -- {{ event.budget }} Donate {{ event.budget|pluralize }}</li>
+{% endfor %}
+</ul>
+<a href="{% url 'planner:detail' wedding.id %}">Donate again?</a>
